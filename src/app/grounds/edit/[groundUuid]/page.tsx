@@ -8,14 +8,10 @@ import GroundService from "../../../../../services/ground.service";
 const EditGround = (
     {
         params,
-        query,
     }:{
         params: {
             groundUuid: string;
-        },
-        query: {
-            [key: string]: string | string[];
-    }
+        }
 }
 ) => {
 

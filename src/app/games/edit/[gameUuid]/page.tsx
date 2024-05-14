@@ -8,13 +8,9 @@ import { useRouter } from "next/navigation";
 const GamaEdit = (
     {
         params,
-        query,
     }:{
         params: {
             gameUuid: string;
-        },
-        query: {
-            [key: string]: string | string[];
         }
     }
 ) => {
