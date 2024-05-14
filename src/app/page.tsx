@@ -7,8 +7,6 @@ import { useRouter } from 'next/navigation';
 import { IUser } from '@/types';
 export default function Home() {
 
-  
-
       const [user, setUser] = useState({} as IUser);
       const router = useRouter();
 

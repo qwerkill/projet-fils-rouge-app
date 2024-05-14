@@ -7,25 +7,25 @@ interface User {
 
 
 const getUser = (): User | null => {
-    const userItem = localStorage.getItem("user");
+    const userItem = window?.localStorage?.getItem("user");
     return userItem ? JSON.parse(userItem) : null;
 };
 
 const getToken = (): string | null => {
-    return localStorage.getItem("access_token");
+    return window?.localStorage?.getItem("access_token");
 }
 
 const setUser = (user: User): void => {
-    localStorage.setItem("user", JSON.stringify(user));
+    window?.localStorage?.setItem("user", JSON.stringify(user));
 };
 
 const setToken = (access_token: string): void => {
-    localStorage.setItem("access_token", access_token);
+    window?.localStorage?.setItem("access_token", access_token);
 }
 
 const removeUser = (): void => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("access_token");
+    window?.localStorage?.removeItem("user");
+    window?.localStorage?.removeItem("access_token");
 };
 
 
