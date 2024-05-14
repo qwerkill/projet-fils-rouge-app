@@ -5,6 +5,11 @@ const searchGame = async (search: string) => {
     return res.data;
 }
 
+const getGames = async () => {
+    const res = await api.get("/games");
+    return res.data;
+}
+
 const getGame = async (uuid: string) => {
     const res = await api.get(`/games/${uuid}`);
     return res.data;
@@ -16,7 +21,13 @@ const createGame = async (data: any) => {
 }
 
 const updateGame = async (uuid: string, data: any) => {
-    const res = await api.put(`/games/${uuid}`, data);
+    const res = await api.patch(`/games/${uuid}`, data);
+    return res.data;
+}
+
+const joinGame = async (uuid: string, userUuid:string) => {
+const res = await api.patch(`/games/join/${uuid}`, {userUuid});
+console.log(res.data);
     return res.data;
 }
 
@@ -27,7 +38,9 @@ const deleteGame = async (uuid: string) => {
 
 const GameService = {
     searchGame,
+    getGames,
     getGame,
+    joinGame,
     createGame,
     updateGame,
     deleteGame,

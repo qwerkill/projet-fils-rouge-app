@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import AuthService from '../../../../services/auth.service';
+import { useRouter } from 'next/navigation';
 
 export default function SignUp() {
 
     const [credaentials, setCredentials] = useState({});
+    const route = useRouter();
 
 
     const handlChange = (e: any) => {
@@ -19,8 +21,7 @@ export default function SignUp() {
         e.preventDefault();
         try {
             const data = await AuthService.signup(credaentials);
-            console.log(data);
-            window.location.href = '/auth/signin';
+            route.push('/auth/signin');
         } catch (error) {
             console.log(error);
         }

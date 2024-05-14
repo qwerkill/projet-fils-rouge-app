@@ -4,21 +4,19 @@
 import React, { useState } from 'react';
 import AuthService from '../../../../services/auth.service';
 import TokenService from '../../../../services/token.service';
+import { useRouter } from 'next/navigation';
 
 const SignIn = () => {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
+    const router = useRouter();
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = async  (event: any) => {
         event.preventDefault();
-        AuthService.signin({ identifier, password })
-           .then(data => {
-                console.log(data);
-            window.location.href = '/home';
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        const res = await AuthService.signin({ identifier, password })
+        TokenService.setUser(res.user);
+        TokenService.setToken(res.access_token);
+       router.push('/');
     };
 
     return (

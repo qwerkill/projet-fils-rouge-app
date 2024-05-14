@@ -1,26 +1,16 @@
+import axios from "axios";
 import api from "./api.service";
 import TokenService from "./token.service";
 
-const signup = (credentials: any) => {
-    return api.post("/auth/signup", credentials)
-        .then((res) => {
-            const data = res.data
-            if (data.accessToken) {
-                TokenService.setUser(data);
-            }
-            return data;
-        })
+const signup = async  (credentials: any) => {
+    const res = await api.post(`/auth/signup`, credentials)
+    const data = res.data;
 };
 
-const signin = async (credentials: any) => {
-    const res = await api.post("/auth/signin", credentials)
-    const data = res.data
-    if (data.accessToken) {
-        TokenService.setUser(data);
-    }
-    
-    return data;
-};
+const signin = async (credentials:any) => {
+    const response = await api.post(`/auth/signin`, credentials);
+    return response.data;
+}
 
 
 

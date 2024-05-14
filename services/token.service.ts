@@ -1,46 +1,39 @@
 interface User {
-    token: string;
-    refreshToken: string;
     name: string;
+    uuid: string;
+    email: string;
+    password: string;
 }
 
-const getLocalRefreshToken = (): string | null => {
-    const user = getUser();
-    return user?.refreshToken || null;
-};
-
-const getLocalAccessToken = (): string | null => {
-    const user = getUser();
-    return user?.token || null;
-};
-
-const updateLocalAccessToken = (token: string): void => {
-    const user = getUser();
-    if (user) {
-        user.token = token;
-        setUser(user);
-    }
-};
 
 const getUser = (): User | null => {
     const userItem = localStorage.getItem("user");
     return userItem ? JSON.parse(userItem) : null;
 };
 
+const getToken = (): string | null => {
+    return localStorage.getItem("access_token");
+}
+
 const setUser = (user: User): void => {
     localStorage.setItem("user", JSON.stringify(user));
 };
 
+const setToken = (access_token: string): void => {
+    localStorage.setItem("access_token", access_token);
+}
+
 const removeUser = (): void => {
     localStorage.removeItem("user");
+    localStorage.removeItem("access_token");
 };
 
+
 const TokenService = {
-    getLocalRefreshToken,
-    getLocalAccessToken,
-    updateLocalAccessToken,
     getUser,
+    getToken,
     setUser,
+    setToken,
     removeUser
 };
 

@@ -3,22 +3,20 @@ import TokenService from "./token.service";
 
 
 const instance = axios.create({
-    baseURL: process.env.NEXT_APP_API_URL,
+    baseURL: process.env.NEXT_PUBLIC_APP_API_URL,
     headers: {
         "Content-Type": "application/json",
+        "Authorization" : `Bearer ${TokenService.getToken()}`
     },
 });
 
 
 instance.interceptors.request.use(  
     async (config) => {
-    const accessToken: string | null = await TokenService.getLocalAccessToken();
-  
-    if (accessToken) {
-      config.headers["Authorization"] = 'Bearer ' + accessToken;
-    }
-    return config;
-  },
+        const accessToken = localStorage.getItem('accessToken')
+        if (accessToken) config.headers['Authorization'] = `Bearer ${accessToken}`
+        return config
+    },
   (error) => {
     return Promise.reject(error);
   }
