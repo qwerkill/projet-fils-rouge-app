@@ -8,14 +8,10 @@ import { useRouter } from "next/navigation";
 
 const GameSinglePage = ({
     params,
-    query,
 }:{
     params: {
         gameUuid: string;
     },
-    query: {
-        [key: string]: string | string[];
-    }
 }) => {
 
  const [game, setGame] = useState({} as IGame);

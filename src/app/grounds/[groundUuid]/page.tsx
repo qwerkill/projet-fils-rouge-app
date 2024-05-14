@@ -8,14 +8,10 @@ import { useRouter } from "next/navigation";
 const GroundSinglePage = (
     {
         params,
-        query,
     }:{
         params: {
             groundUuid: string;
-        },
-        query: {
-            [key: string]: string | string[];
-    }
+        }
 }
 ) => {
 
