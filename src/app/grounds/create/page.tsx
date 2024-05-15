@@ -35,6 +35,8 @@ const CreateGround = () => {
                 <input type="text" name="name" onChange={handleChange} />
                 <label htmlFor="Localisation">Localisation</label>
                 <input type="text" name="localisation" onChange={handleChange} />
+                <label htmlFor="Image">Image</label>
+                <input type="text" name="image" onChange={handleChange} />
                 <button type="submit">Create Ground</button>
             </form>
         </div>
